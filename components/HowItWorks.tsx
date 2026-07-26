@@ -1,22 +1,26 @@
 import { steps } from "@/lib/content"
+import Reveal from "./Reveal"
 
 export default function HowItWorks() {
   return (
-    <section className="section" id="how">
+    <section className="section section--alt" id="how">
       <div className="container">
-        <div className="section-head section-head--center">
+        <Reveal className="head head--center">
           <span className="eyebrow">How it works</span>
-          <h2 className="h2">Set it up once. Coast for the rest of the year.</h2>
-        </div>
+          <h2 className="h2">
+            Set it up once. <span className="grad-text">Coast all year.</span>
+          </h2>
+        </Reveal>
 
-        <div className="steps">
-          {steps.map((step) => (
-            <article className="step" key={step.step}>
-              <span className="step__num">{step.step}</span>
-              <div className="step__rule" />
+        <div className="flow">
+          <span className="flow__line" aria-hidden="true" />
+          {steps.map((step, index) => (
+            <Reveal key={step.step} delay={index * 120} className="flow__item">
+              <span className="flow__num">{step.step}</span>
+              <span className="flow__tag">{step.tag}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -3,52 +3,54 @@
 import { useState } from "react"
 import { faqs } from "@/lib/content"
 import { PlusIcon } from "./icons"
+import Reveal from "./Reveal"
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section className="section section--soft" id="faq">
+    <section className="section" id="faq">
       <div className="container">
-        <div className="section-head section-head--center">
+        <Reveal className="head head--center">
           <span className="eyebrow">FAQ</span>
-          <h2 className="h2">Questions people ask before signing up</h2>
-        </div>
+          <h2 className="h2">
+            Questions people ask <span className="grad-text">before signing up</span>
+          </h2>
+        </Reveal>
 
-        <div className="faq">
+        <Reveal className="faq">
           {faqs.map((faq, index) => {
-            const isOpen = openIndex === index
+            const isOpen = open === index
             return (
-              <div className="faq__item" key={faq.q}>
+              <div className={`faq__item${isOpen ? " is-open" : ""}`} key={faq.q}>
                 <h3>
                   <button
                     type="button"
                     className="faq__q"
                     aria-expanded={isOpen}
                     aria-controls={`faq-panel-${index}`}
-                    id={`faq-button-${index}`}
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    id={`faq-btn-${index}`}
+                    onClick={() => setOpen(isOpen ? null : index)}
                   >
                     <span>{faq.q}</span>
-                    <PlusIcon
-                      className={`faq__sign${isOpen ? " faq__sign--open" : ""}`}
-                    />
+                    <span className={`faq__sign${isOpen ? " is-open" : ""}`}>
+                      <PlusIcon />
+                    </span>
                   </button>
                 </h3>
-                {isOpen ? (
-                  <div
-                    className="faq__a"
-                    id={`faq-panel-${index}`}
-                    role="region"
-                    aria-labelledby={`faq-button-${index}`}
-                  >
-                    {faq.a}
-                  </div>
-                ) : null}
+                <div
+                  className="faq__panel"
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${index}`}
+                  hidden={!isOpen}
+                >
+                  <p>{faq.a}</p>
+                </div>
               </div>
             )
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

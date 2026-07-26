@@ -1,12 +1,13 @@
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
-import LogoCloud from "@/components/LogoCloud"
+import Marquee from "@/components/Marquee"
 import Features from "@/components/Features"
 import HowItWorks from "@/components/HowItWorks"
-import Testimonial from "@/components/Testimonial"
+import Metrics from "@/components/Metrics"
+import Testimonials from "@/components/Testimonials"
 import Pricing from "@/components/Pricing"
 import Faq from "@/components/Faq"
-import CtaBanner from "@/components/CtaBanner"
+import CtaSection from "@/components/CtaSection"
 import Footer from "@/components/Footer"
 
 export default function HomePage() {
@@ -15,13 +16,14 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <LogoCloud />
+        <Marquee />
         <Features />
         <HowItWorks />
-        <Testimonial />
+        <Metrics />
+        <Testimonials />
         <Pricing />
         <Faq />
-        <CtaBanner />
+        <CtaSection />
       </main>
       <Footer />
     </>
